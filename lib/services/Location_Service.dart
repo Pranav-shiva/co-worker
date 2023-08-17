@@ -1,12 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {
-  double? lat;
-  double? long;
-  String address = "Get your Location";
-
-//
-//
+  String selectedFileName = "";
   Future<Position> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
