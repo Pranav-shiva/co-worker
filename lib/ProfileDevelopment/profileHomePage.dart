@@ -59,12 +59,6 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  Textfield(
-                    onChange: (val) {
-                      ProfileProvider.userNameF(val);
-                    },
-                    title: 'UserName',
-                  ),
                   const SizedBox(
                     height: 15,
                   ),
@@ -82,7 +76,7 @@ class _ProfileHomePageState extends State<ProfileHomePage> {
                   ),
                   !ProfileProvider.load
                       ? ProfileSubmitButton()
-                      : CircularProgressIndicator(
+                      : const CircularProgressIndicator(
                           color: Colors.white,
                         )
                 ],

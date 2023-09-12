@@ -53,7 +53,10 @@ class ProfileCalender extends StatelessWidget {
                     height: 200,
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.date,
-                      initialDateTime: DateTime.now(),
+                      initialDateTime:
+                          DateTime.now().subtract(Duration(days: 600)),
+                      maximumYear:
+                          DateTime.now().subtract(Duration(days: 356)).year,
                       onDateTimeChanged: (val) {
                         ProfileProvider.dateofBirth(val);
                       },

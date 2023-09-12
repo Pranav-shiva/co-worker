@@ -1,4 +1,5 @@
 import 'package:coworker/EntryPage/entryPage.dart';
+import 'package:coworker/services/ShowSnackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,8 @@ class ProfileSubmitButton extends StatefulWidget {
 
 class _ProfileSubmitButtonState extends State<ProfileSubmitButton> {
   @override
+  SnackBarr snackBarr = SnackBarr();
+
   Widget build(BuildContext context) {
     return Consumer2<ProfileProvider, Providerr>(
         builder: (context, ProfileProvider, Providerr, child) {
@@ -20,15 +23,14 @@ class _ProfileSubmitButtonState extends State<ProfileSubmitButton> {
           final n = Navigator.of(context);
           ProfileProvider.start();
           try {
-            if (await ProfileProvider.usernameCheck(
-                ProfileProvider.userName!)) {
-              await Providerr.uploadFile("profileImage");
-              await ProfileProvider.addData(Providerr.profileImageURL);
-              n.pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const EntryPage()),
-                  (Route<dynamic> route) => false);
-            }
-          } catch (e) {}
+            await Providerr.uploadFile("profileImage");
+            await ProfileProvider.addData(Providerr.profileImageURL);
+            n.pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const EntryPage()),
+                (Route<dynamic> route) => false);
+          } catch (e) {
+            ProfileProvider.end();
+          }
         },
         child: Container(
           width: MediaQuery.of(context).size.width - 250,

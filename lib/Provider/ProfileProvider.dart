@@ -47,29 +47,18 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> addData(String imageUrl) async {
     try {
-      if (await usernameCheck(userName!)) {
-        await FirebaseFirestore.instance.collection("profile").add({
-          'name': name,
-          'username': userName,
-          'imageUrl': imageUrl,
-          'dateOfBirth': dateofbirth.toString(),
-          'uid': FirebaseAuth.instance.currentUser?.uid,
-        });
-      }
+      await FirebaseFirestore.instance.collection("profile").add({
+        'name': name,
+        'imageUrl': imageUrl,
+        'dateOfBirth': dateofbirth.toString(),
+        'uid': FirebaseAuth.instance.currentUser?.uid,
+      });
     } catch (e) {
       end();
     }
 
     end();
     notifyListeners();
-  }
-
-  Future<bool> usernameCheck(String username) async {
-    final result = await FirebaseFirestore.instance
-        .collection('profile')
-        .where('username', isEqualTo: username)
-        .get();
-    return result.docs.isEmpty;
   }
 
   String displayImage = "";

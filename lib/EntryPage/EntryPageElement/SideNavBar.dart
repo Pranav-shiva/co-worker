@@ -54,7 +54,7 @@ class _SideNavBarState extends State<SideNavBar> {
                       ProfileProvider.displayName != null
                           ? ProfileProvider.displayName!
                           : "unknown",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 22),
@@ -63,30 +63,12 @@ class _SideNavBarState extends State<SideNavBar> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Column(
               children: [
-                Material(
-                  borderRadius: BorderRadius.circular(20),
-                  elevation: 5,
-                  child: ListTile(
-                      title: const Text(
-                        'Find Friend',
-                        textAlign: TextAlign.center,
-                        style:
-                            TextStyle(color: Color(0xff07434D), fontSize: 15),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChatTopNavBar()),
-                        );
-                      }),
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Material(
@@ -126,6 +108,14 @@ class _SideNavBarState extends State<SideNavBar> {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 22,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Text(
+                      "This app is currently in its beta version, so some features and functionality may still be in development and subject to improvement"),
+                )
               ],
             ),
           ],
